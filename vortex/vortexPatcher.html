@@ -836,8 +836,8 @@ button,input,select,textarea{font:inherit}
 </div>
 <script>
 let sourceHTML = '', sourceLoaded = false;
-const RAW_URL = 'https://raw.githubusercontent.com/NullBit9/Vortex/refs/heads/main/index.html';
-const GH_URL  = 'https://github.com/NullBit9/Vortex/raw/refs/heads/main/index.html';
+const RAW_URL = 'https://raw.githubusercontent.com/NullBit9/Vortex/refs/heads/main/vortex/index.html';
+const GH_URL  = 'https://github.com/NullBit9/Vortex/raw/refs/heads/main/vortex/index.html';
 
 // Default checked state for all patches (all checked by default)
 function resetCheckboxesToDefault() {
@@ -1069,7 +1069,7 @@ async function fetchSource() {
   // then CORS proxies that return raw content not the GitHub HTML page
   const attempts = [
     {label:'Fetching from GitHub Raw...',       url: RAW_URL,  opts: {headers:{'Accept':'text/html,application/xhtml+xml'}}},
-    {label:'Fetching via jsDelivr CDN...',       url: 'https://cdn.jsdelivr.net/gh/nautilus-os/gust@main/index.html', opts:{}},
+    {label:'Fetching via jsDelivr CDN...',       url: 'https://raw.githubusercontent.com/NullBit9/Vortex/refs/heads/main/vortex/index.html', opts:{}},
     {label:'Fetching via codetabs proxy...',     url: 'https://api.codetabs.com/v1/proxy/?quest=' + RAW_URL, opts:{}},
     {label:'Fetching via allorigins...',         url: 'https://api.allorigins.win/raw?url=' + encodeURIComponent(RAW_URL), opts:{}},
   ];
@@ -1954,7 +1954,7 @@ function downloadBaseVORTEX() {
   // Source not loaded yet — fetch directly
   const btn = document.getElementById('presetBaseBtn');
   if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching…'; }
-  fetch('https://cdn.jsdelivr.net/gh/nautilus-os/gust@main/index.html', {cache:'no-store'})
+  fetch('https://raw.githubusercontent.com/NullBit9/Vortex/refs/heads/main/vortex/index.html', {cache:'no-store'})
     .then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
     .then(text => { triggerDownload(text, 'VORTEX.html'); })
     .catch(() => { window.open('https://github.com/nullbit9/aerobrowser/raw/refs/heads/main//vortex/index.html','_blank'); })
